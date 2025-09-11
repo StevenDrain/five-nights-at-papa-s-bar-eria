@@ -867,7 +867,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1035,10 +1035,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 2706503318956079274, guid: dbbaaefd24c85774188f067e6c3b54cf, type: 3}
   Activators:
-  - {fileID: 2110451202}
-  - {fileID: 1692301967}
-  - {fileID: 1903324603}
-  - {fileID: 1170308473}
+  - {fileID: 2110451204}
+  - {fileID: 1692301969}
+  - {fileID: 1903324605}
+  - {fileID: 1170308475}
 --- !u!4 &1324711299
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1181,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1286,7 +1286,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1459,7 +1459,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
