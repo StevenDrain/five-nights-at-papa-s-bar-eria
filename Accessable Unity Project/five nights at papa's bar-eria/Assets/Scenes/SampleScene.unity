@@ -1035,10 +1035,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 2706503318956079274, guid: dbbaaefd24c85774188f067e6c3b54cf, type: 3}
   Activators:
-  - {fileID: 2110451204}
-  - {fileID: 1692301969}
-  - {fileID: 1903324605}
-  - {fileID: 1170308475}
+  - {fileID: 2110451202}
+  - {fileID: 1692301967}
+  - {fileID: 1903324603}
+  - {fileID: 1170308473}
+  color: {fileID: 2100000, guid: 209f92a1d414cfe4eb80eaebca6c8d80, type: 2}
 --- !u!4 &1324711299
 Transform:
   m_ObjectHideFlags: 0

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 public class Activator : MonoBehaviour
 {
     public InputActionReference key;
     GameObject note;
-    public SphereCollider[] Activators;
+    public GameObject[] Activators;
+    private Material baseColor;
+
+    public Material color;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -28,40 +33,75 @@ public class Activator : MonoBehaviour
         if (keyInput.y > 0)
         {
 
-            SphereCollider aKey = Activators[0];
-            
-            aKey.enabled = true;
+
+            GameObject aKey = Activators[0];
+
+            SphereCollider aKeyCol = aKey.GetComponent<SphereCollider>();
+
+            aKeyCol.enabled = true;
+
+            GameObject aKeyObject = Activators[0].GameObject();
+
+            Renderer aKeyRenderer = aKeyObject.GetComponent<Renderer>();
+
+            aKeyRenderer.material.SetColor("_Color", Color.yellow);
+
 
         }
         else if (keyInput.y < 0)
         {
 
-            SphereCollider bKey = Activators[1];
-            
-            bKey.enabled = true;
+            GameObject bKey = Activators[1];
+
+            SphereCollider bKeyCol = bKey.GetComponent<SphereCollider>();
+
+            bKeyCol.enabled = true;
+
+            Renderer bKeyRenderer = bKey.GetComponent<Renderer>();
+
+            bKeyRenderer.material.SetColor("_Color", Color.cyan);
 
         }
         else if (keyInput.x > 0)
         {
 
-            SphereCollider cKey = Activators[2];
+            GameObject cKey = Activators[2];
 
-            cKey.enabled = true;
+            SphereCollider cKeyCol = cKey.GetComponent<SphereCollider>();
+
+            cKeyCol.enabled = true;
+
+            Renderer cKeyRenderer = cKey.GetComponent<Renderer>();
+
+            cKeyRenderer.material.SetColor("_Color", Color.green);
 
         }
         else if (keyInput.x < 0)
         {
 
-            SphereCollider switcherKey = Activators[3];
-            
-            switcherKey.enabled = true;
+            GameObject switcherKey = Activators[3];
+
+            SphereCollider switcherKeyCol = switcherKey.GetComponent<SphereCollider>();
+
+            switcherKeyCol.enabled = true;
+
+            Renderer switcherKeyRenderer = switcherKey.GetComponent<Renderer>();
+
+            switcherKeyRenderer.material.SetColor("_Color", Color.blue);
 
         }
         else
         {
-           foreach (SphereCollider keyCollider in Activators)
+            foreach (GameObject keyObject in Activators)
             {
+                SphereCollider keyCollider = keyObject.GetComponent<SphereCollider>();
                 keyCollider.enabled = false;
+
+                Renderer keyRenderer = keyObject.GetComponent<Renderer>();
+                if (keyRenderer != null)
+                {
+                    keyRenderer.material.SetColor("_Color", Color.white);
+                }
             }
         }
     }
