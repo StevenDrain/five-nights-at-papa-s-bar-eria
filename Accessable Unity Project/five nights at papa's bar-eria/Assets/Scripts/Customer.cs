@@ -10,6 +10,9 @@ public class Customer : MonoBehaviour
     private static HashSet<int> occupiedSpots = new HashSet<int>();
     private int mySpotIndex = -1;
 
+    private bool served = false;
+    public GameObject request;
+
     void Start()
     {
         spots = new GameObject[8];
@@ -29,7 +32,11 @@ public class Customer : MonoBehaviour
 
             if (Vector3.Distance(transform.position, targetSpot.position) < 0.01f)
             {
-                // Arrived at spot
+                if (served == false)
+                {
+                    requestBeer();
+                }
+                
             }
         }
     }
@@ -53,6 +60,21 @@ public class Customer : MonoBehaviour
                 targetSpot = spots[i].transform;
                 break;
             }
+        }
+    }
+
+    void requestBeer()
+    {
+        bool beerRequested = false;
+
+        if (beerRequested == true)
+        {
+            return;
+        }
+        else
+        {
+            request.SetActive(true);
+            beerRequested = true;
         }
     }
 }
