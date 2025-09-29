@@ -69,6 +69,9 @@ public class Customer : MonoBehaviour
 
         if (beerRequested == true)
         {
+            if(served == true) {
+                
+            }
             return;
         }
         else
