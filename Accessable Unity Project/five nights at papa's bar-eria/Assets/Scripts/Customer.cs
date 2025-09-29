@@ -11,7 +11,16 @@ public class Customer : MonoBehaviour
     private int mySpotIndex = -1;
 
     private bool served = false;
+    private bool drinkRequested = false;
     public GameObject request;
+    public GameObject beer;
+    public GameObject shot;
+    public GameObject wine;
+    public GameObject martini;
+    private bool beerRequested = false;
+    private bool shotRequested = false;
+    private bool wineRequested = false;
+    private bool martiniRequested = false;
 
     void Start()
     {
@@ -32,9 +41,10 @@ public class Customer : MonoBehaviour
 
             if (Vector3.Distance(transform.position, targetSpot.position) < 0.01f)
             {
-                if (served == false)
+
+                if (drinkRequested == false)
                 {
-                    requestBeer();
+                    requestDrink();
                 }
                 
             }
@@ -63,21 +73,40 @@ public class Customer : MonoBehaviour
         }
     }
 
-    void requestBeer()
+    void requestDrink()
     {
-        bool beerRequested = false;
-
-        if (beerRequested == true)
+        
+        if (served == true)
         {
-            if(served == true) {
-                
-            }
             return;
         }
         else
         {
+            Debug.Log("Requesting Drink");
+            int drinkType = Random.Range(1, 5); // 1 to 4 inclusive
             request.SetActive(true);
-            beerRequested = true;
+
+            // Activate the selected drink
+            switch (drinkType)
+            {
+                case 1:
+                    if (beer != null) beer.SetActive(true);
+                    beerRequested = true;
+                    break;
+                case 2:
+                    if (shot != null) shot.SetActive(true);
+                    shotRequested = true;
+                    break;
+                case 3:
+                    if (wine != null) wine.SetActive(true);
+                    wineRequested = true;
+                    break;
+                case 4:
+                    if (martini != null) martini.SetActive(true);
+                    martiniRequested = true;
+                    break;
+            }
+            drinkRequested = true;
         }
     }
 }
