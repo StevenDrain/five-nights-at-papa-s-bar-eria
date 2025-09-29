@@ -1,5 +1,5 @@
 {
-    "name": "Players",
+    "name": "Player1",
     "maps": [
         {
             "name": "Movement",
@@ -82,7 +82,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "dfdfbf35-3427-4f4f-a33c-e50ff43a26cc",
+                    "id": "604547e4-70de-443f-90b1-a9e6f90d49a7",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -93,7 +93,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "676041ce-cbf4-46b4-80b1-c0a8c7d4a108",
+                    "id": "c807bbf4-5463-4408-bfc3-b655be7bf234",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -104,7 +104,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "e9a32250-6891-433b-bb39-509808a0b59c",
+                    "id": "a81074ea-e6c3-410c-8a70-cb1217e16a7c",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -115,7 +115,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "0c2d9cb6-608c-4915-a811-db961d77f021",
+                    "id": "7bdcacea-f6b1-4d91-8ead-f19878a7e882",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -126,7 +126,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "13251ccc-720b-453b-8616-87a185cbe39a",
+                    "id": "92984a5d-68d9-40a7-a70f-b85dfc020a77",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
