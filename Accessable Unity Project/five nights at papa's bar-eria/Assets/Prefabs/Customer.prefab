@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 7857465545996564107}
   m_Layer: 0
   m_Name: Customer
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,11 +241,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speed: 4
+  served: 0
   request: {fileID: 764768253758305502}
   beer: {fileID: 5575703947999756716}
   shot: {fileID: 4366476851250911146}
   wine: {fileID: 4575493962803297191}
   martini: {fileID: 189882560331932226}
+  beerRequested: 0
+  shotRequested: 0
+  wineRequested: 0
+  martiniRequested: 0
+  player: {fileID: 0}
 --- !u!1001 &1036937318737207059
 PrefabInstance:
   m_ObjectHideFlags: 0

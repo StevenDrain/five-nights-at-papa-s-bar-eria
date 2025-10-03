@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    public GameObject[] spots;
-    public float speed = 2f;
+    [SerializeField] private GameObject[] spots;
+    [SerializeField] private float speed = 2f;
     private Transform targetSpot;
     private static HashSet<int> occupiedSpots = new HashSet<int>();
     private int mySpotIndex = -1;
 
-    private bool served = false;
+    public bool served = false;
     private bool drinkRequested = false;
-    public GameObject request;
-    public GameObject beer;
-    public GameObject shot;
-    public GameObject wine;
-    public GameObject martini;
-    private bool beerRequested = false;
-    private bool shotRequested = false;
-    private bool wineRequested = false;
-    private bool martiniRequested = false;
+    [SerializeField] private GameObject request;
+    [SerializeField] private GameObject beer;
+    [SerializeField] private GameObject shot;
+    [SerializeField] private GameObject wine;
+    [SerializeField] private GameObject martini;
+    public bool beerRequested = false;
+    public bool shotRequested = false;
+    public bool wineRequested = false;
+    public bool martiniRequested = false;
+
+    public GameObject player;
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class Customer : MonoBehaviour
             spots[i] = GameObject.Find((i + 1).ToString());
         }
         ChooseSpot();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -46,7 +49,7 @@ public class Customer : MonoBehaviour
                 {
                     requestDrink();
                 }
-                
+                givenDrink();
             }
         }
     }
@@ -75,38 +78,40 @@ public class Customer : MonoBehaviour
 
     void requestDrink()
     {
-        
+
+        Debug.Log("Requesting Drink");
+        int drinkType = Random.Range(1, 5); // 1 to 4 inclusive
+        request.SetActive(true);
+
+        // Activate the selected drink
+        switch (drinkType)
+        {
+            case 1:
+                if (beer != null) beer.SetActive(true);
+                beerRequested = true;
+                break;
+            case 2:
+                if (shot != null) shot.SetActive(true);
+                shotRequested = true;
+                break;
+            case 3:
+                if (wine != null) wine.SetActive(true);
+                wineRequested = true;
+                break;
+            case 4:
+                if (martini != null) martini.SetActive(true);
+                martiniRequested = true;
+                break;
+        }
+        drinkRequested = true;
+    }
+
+    void givenDrink()
+    {
         if (served == true)
         {
-            return;
-        }
-        else
-        {
-            Debug.Log("Requesting Drink");
-            int drinkType = Random.Range(1, 5); // 1 to 4 inclusive
-            request.SetActive(true);
-
-            // Activate the selected drink
-            switch (drinkType)
-            {
-                case 1:
-                    if (beer != null) beer.SetActive(true);
-                    beerRequested = true;
-                    break;
-                case 2:
-                    if (shot != null) shot.SetActive(true);
-                    shotRequested = true;
-                    break;
-                case 3:
-                    if (wine != null) wine.SetActive(true);
-                    wineRequested = true;
-                    break;
-                case 4:
-                    if (martini != null) martini.SetActive(true);
-                    martiniRequested = true;
-                    break;
-            }
-            drinkRequested = true;
+            request.SetActive(false);
+            Destroy(gameObject, 1f);
         }
     }
 }
