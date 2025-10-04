@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class Activator : MonoBehaviour
 {
     public InputActionReference key;
-    GameObject note;
+    public Renderer[] materials;
+    public Material pressed;
+    public Material baseColor;
     public SphereCollider[] Activators;
 
     // Start is called before the first frame update
@@ -23,28 +25,56 @@ public class Activator : MonoBehaviour
 
     void KeyRead()
     {
+        
         Vector2 keyInput = key.action.ReadValue<Vector2>();
+        Renderer aKeyR = materials[0];
+        Renderer bKeyR = materials[1];
+        Renderer cKeyR = materials[2];
+        Renderer SwitcherKeyR = materials[3];
+
+        SphereCollider aKey = Activators[0];
+        SphereCollider bKey = Activators[1];
+        SphereCollider cKey = Activators[2];
+        SphereCollider switcherKey = Activators[3];
+
+        if (keyInput.y <= 0 || keyInput.y >= 0 || keyInput.x <= 0 || keyInput.x >= 0)
+        {
+            aKeyR.material = pressed;
+            bKeyR.material = pressed;
+            cKeyR.material = pressed;
+            SwitcherKeyR.material = pressed;
+
+            aKey.enabled = true;
+            bKey.enabled = true;
+            cKey.enabled = true;
+            switcherKey.enabled = true;
+        }
 
         if (keyInput.y > 0)
         {
-
-            SphereCollider aKey = Activators[0];
             
+
+            aKeyR.material = pressed;
+
+
+
             aKey.enabled = true;
 
         }
         else if (keyInput.y < 0)
         {
 
-            SphereCollider bKey = Activators[1];
             
+            bKeyR.material = pressed;
+
             bKey.enabled = true;
 
         }
         else if (keyInput.x > 0)
         {
 
-            SphereCollider cKey = Activators[2];
+            
+            cKeyR.material = pressed;
 
             cKey.enabled = true;
 
@@ -52,16 +82,22 @@ public class Activator : MonoBehaviour
         else if (keyInput.x < 0)
         {
 
-            SphereCollider switcherKey = Activators[3];
             
+            SwitcherKeyR.material = pressed;
+
             switcherKey.enabled = true;
 
         }
         else
         {
-           foreach (SphereCollider keyCollider in Activators)
+            foreach (SphereCollider keyCollider in Activators)
             {
+                aKeyR.material = baseColor;
+                bKeyR.material = baseColor;
+                cKeyR.material = baseColor;
+                SwitcherKeyR.material = baseColor;
                 keyCollider.enabled = false;
+
             }
         }
     }
