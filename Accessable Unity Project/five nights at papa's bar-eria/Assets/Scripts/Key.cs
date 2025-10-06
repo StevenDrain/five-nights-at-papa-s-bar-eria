@@ -24,8 +24,13 @@ public class Key : MonoBehaviour
         if (other.gameObject.tag == "Clear")
         {
             //Update Score
+            //hold down key for the length of the key
             Destroy(gameObject);
-            
+
+        }
+        if (other.gameObject.tag == "Dead")
+        {
+            Destroy(gameObject);
         }
     }
 }

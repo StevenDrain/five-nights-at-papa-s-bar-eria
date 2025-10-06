@@ -10,11 +10,14 @@ public class Activator : MonoBehaviour
     public Material pressed;
     public Material baseColor;
     public SphereCollider[] Activators;
+    public KeySpawning keySpawning;
 
     // Start is called before the first frame update
     void Start()
     {
         key.action.Enable();
+
+        
     }
 
     // Update is called once per frame
