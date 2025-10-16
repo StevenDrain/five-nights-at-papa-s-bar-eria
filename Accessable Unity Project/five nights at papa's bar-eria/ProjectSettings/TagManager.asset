@@ -7,6 +7,8 @@ TagManager:
   - Clear
   - Key
   - Dead
+  - Scored
+  - Score
   layers:
   - Default
   - TransparentFX

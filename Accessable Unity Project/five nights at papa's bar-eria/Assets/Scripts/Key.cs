@@ -9,9 +9,14 @@ public class Key : MonoBehaviour
     public float speed = 3f;
     Rigidbody rb;
     public Vector3 direction = Vector3.forward;
+    private GameObject scoringSystem;
+    public ScoringSystem scoringSystemScript;
+    bool wasScored;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        scoringSystem = GameObject.FindWithTag("Score");
+        scoringSystemScript = scoringSystem.GetComponent<ScoringSystem>();
     }
 
     // Update is called once per frame
@@ -23,14 +28,25 @@ public class Key : MonoBehaviour
     {
         if (other.gameObject.tag == "Clear")
         {
-            //Update Score
-            //hold down key for the length of the key
+            wasScored = true; // <-- Use flag instead of tag
             Destroy(gameObject);
-
         }
         if (other.gameObject.tag == "Dead")
         {
             Destroy(gameObject);
         }
     }
+
+    void OnDestroy()
+    {
+        if (wasScored)
+        {
+            scoringSystemScript.KeyDestroyed();
+        }
+        else
+        {
+            scoringSystemScript.mulitiplierScore = 0;
+        }
+    }
 }
+
