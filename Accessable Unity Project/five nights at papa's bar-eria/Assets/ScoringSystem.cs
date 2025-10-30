@@ -26,7 +26,6 @@ public class ScoringSystem : MonoBehaviour
         score = mulitiplierScore + regScore;
         srtingScore = score.ToString();
         text.text = "Score: " + srtingScore;
-        ;
     }
    public void KeyDestroyed()
     {

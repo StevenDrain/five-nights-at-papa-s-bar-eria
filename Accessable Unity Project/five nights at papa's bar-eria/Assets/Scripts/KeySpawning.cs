@@ -5,57 +5,57 @@ using UnityEngine;
 public class KeySpawning : MonoBehaviour
 {
     public Transform[] Spawners;
-    
+    public GameObject KeyPrefab; // renamed for clarity
+    public Material ZeroColor;
+    public Material OneColor;
+    public Material TwoColor;
+    public Material ThreeColor;
 
-    public GameObject Key;
-    Renderer KeyR;
+    [HideInInspector] public Vector3 KeySize;
+    private int SpawnerRandom;
 
-   public Vector3 KeySize;
-   public int SpawnerRandom;
-   public Material ZeroColor;
-   public Material OneColor;
-   public Material TwoColor;
-   public Material ThreeColor;
     void Start()
     {
         StartCoroutine(DelayedLoop());
-        KeyR = Key.GetComponent<Renderer>();
-
     }
+
     IEnumerator DelayedLoop()
     {
-        for (int i = 0; i < 30; i++) 
+        for (int i = 0; i < 30; i++)
         {
-            Debug.Log("Iteration " + (i + 1) + " started at: " + Time.time);
 
-            KeySize = new Vector3(1,1,Random.Range(0.5f,10f));
-            SpawnerRandom = Random.Range(0, 4);
+
+            // Choose random length and spawner
+            KeySize = new Vector3(1, 1, Random.Range(1f, 10f));
+            SpawnerRandom = Random.Range(0, Spawners.Length);
+
+            // Wait before spawning next key
             yield return new WaitForSeconds(3.5f);
-            Key.transform.localScale = KeySize;
-            Instantiate(Key, Spawners[SpawnerRandom].position , Spawners[Random.Range(0,3)].rotation);
+
+            // Instantiate first
+            GameObject newKey = Instantiate(
+                KeyPrefab,
+                Spawners[SpawnerRandom].position,
+                Spawners[SpawnerRandom].rotation
+            );
+
+            // Then set its scale
+            newKey.transform.localScale = KeySize;
+
+            // Then color it
+            var keyRenderer = newKey.GetComponent<Renderer>();
+            if (keyRenderer != null)
+            {
+                switch (SpawnerRandom)
+                {
+                    case 0: keyRenderer.material = ZeroColor; break;
+                    case 1: keyRenderer.material = OneColor; break;
+                    case 2: keyRenderer.material = TwoColor; break;
+                    case 3: keyRenderer.material = ThreeColor; break;
+                }
+            }
+
         }
-        Debug.Log("Loop completed!");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (SpawnerRandom == 3)
-        {
-            KeyR.material = ThreeColor;
-        }
-        else if (SpawnerRandom == 2)
-        {
-            KeyR.material = TwoColor;
-        }
-        else if (SpawnerRandom == 1)
-        {
-            KeyR.material = OneColor;
-        }
-        else if (SpawnerRandom == 0)
-        {
-            KeyR.material = ZeroColor;
-        }
-       
-       
+
     }
 }

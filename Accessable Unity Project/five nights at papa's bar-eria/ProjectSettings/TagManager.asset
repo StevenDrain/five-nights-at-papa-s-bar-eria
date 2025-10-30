@@ -9,6 +9,7 @@ TagManager:
   - Dead
   - Scored
   - Score
+  - Spawners
   layers:
   - Default
   - TransparentFX

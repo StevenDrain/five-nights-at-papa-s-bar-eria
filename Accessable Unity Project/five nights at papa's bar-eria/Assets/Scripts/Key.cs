@@ -1,52 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float speed = 3f;
-    Rigidbody rb;
+    private Rigidbody rb;
     public Vector3 direction = Vector3.forward;
-    private GameObject scoringSystem;
-    public ScoringSystem scoringSystemScript;
-    bool wasScored;
+
+    private ScoringSystem scoringSystemScript;
+
+    private float keyLength;
+    private bool isInsideClear;
+    private bool wasScored;
+
+    private Vector3 enterPosition;
+    private float traveledDistance;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        scoringSystem = GameObject.FindWithTag("Score");
+
+        var scoringSystem = GameObject.FindWithTag("Score");
         scoringSystemScript = scoringSystem.GetComponent<ScoringSystem>();
+
+        keyLength = transform.localScale.z;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + (-direction * speed * Time.fixedDeltaTime));
+
+        if (isInsideClear)
+        {
+            
+            traveledDistance = Vector3.Distance(enterPosition, transform.position);
+
+            if (traveledDistance >= keyLength && !wasScored)
+            {
+                wasScored = true;
+                scoringSystemScript.KeyDestroyed();
+                Destroy(gameObject);
+            }
+        }
     }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Clear")
+        if (other.CompareTag("Clear"))
         {
-            wasScored = true; // <-- Use flag instead of tag
+            isInsideClear = true;
+            enterPosition = transform.position;
+            traveledDistance = 0;
+        }
+
+        if (other.CompareTag("Dead"))
+        {
             Destroy(gameObject);
         }
-        if (other.gameObject.tag == "Dead")
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Clear"))
         {
-            Destroy(gameObject);
+            isInsideClear = false;
+
+            if (!wasScored)
+            {
+                scoringSystemScript.mulitiplierScore = 0;
+            }
         }
     }
 
     void OnDestroy()
     {
-        if (wasScored)
-        {
-            scoringSystemScript.KeyDestroyed();
-        }
-        else
+        if (!wasScored)
         {
             scoringSystemScript.mulitiplierScore = 0;
         }
     }
 }
-
