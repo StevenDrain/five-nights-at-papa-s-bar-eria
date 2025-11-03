@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerOneController : MonoBehaviour
 {
+    
     [SerializeField] private CharacterController playerController;
     [SerializeField] private InputActionReference movement;
     [SerializeField] private int speed;
@@ -21,6 +22,7 @@ public class PlayerOneController : MonoBehaviour
     public bool hasWine = false;
     public bool hasShot = false;
     public bool hasMartini = false;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
@@ -162,6 +164,8 @@ public class PlayerOneController : MonoBehaviour
                     hasDrink = false;
                     hasBeer = false;
                     customerScript.served = true;
+                    score += 10;
+                    Debug.Log("score: " + score);
                 }
                 else if (hasWine && customerScript.wineRequested)
                 {
@@ -173,6 +177,8 @@ public class PlayerOneController : MonoBehaviour
                     hasDrink = false;
                     hasWine = false;
                     customerScript.served = true;
+                    score += 10;
+                    Debug.Log("score: " + score);
                 }
                 else if (hasShot && customerScript.shotRequested)
                 {
@@ -184,6 +190,8 @@ public class PlayerOneController : MonoBehaviour
                     hasDrink = false;
                     hasShot = false;
                     customerScript.served = true;
+                    score += 10;
+                    Debug.Log("score: " + score);
                 }
                 else if (hasMartini && customerScript.martiniRequested)
                 {
@@ -195,6 +203,8 @@ public class PlayerOneController : MonoBehaviour
                     hasDrink = false;
                     hasMartini = false;
                     customerScript.served = true;
+                    score += 10;
+                    Debug.Log("score: " + score);
                 }
                 else
                 {
