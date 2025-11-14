@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Clear
+  - Key
+  - Dead
+  - Scored
+  - Score
+  - Spawners
   layers:
   - Default
   - TransparentFX
