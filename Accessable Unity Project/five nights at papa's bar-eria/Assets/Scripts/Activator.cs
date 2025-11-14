@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class Activator : MonoBehaviour
 {
     public InputActionReference key;
@@ -11,12 +12,13 @@ public class Activator : MonoBehaviour
     public Material baseColor;
     public SphereCollider[] Activators;
     public KeySpawning keySpawning;
+    public AudioSource activatedButton; // put a better sfx in
 
     // Start is called before the first frame update
     void Start()
     {
         key.action.Enable();
-
+        activatedButton.mute = true;
         
     }
 
@@ -42,6 +44,7 @@ public class Activator : MonoBehaviour
 
         if (keyInput.y <= 0 || keyInput.y >= 0 || keyInput.x <= 0 || keyInput.x >= 0)
         {
+            activatedButton.mute = false;
             aKeyR.material = pressed;
             bKeyR.material = pressed;
             cKeyR.material = pressed;
@@ -95,6 +98,7 @@ public class Activator : MonoBehaviour
         {
             foreach (SphereCollider keyCollider in Activators)
             {
+                activatedButton.mute = true;
                 aKeyR.material = baseColor;
                 bKeyR.material = baseColor;
                 cKeyR.material = baseColor;
