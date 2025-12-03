@@ -68,7 +68,7 @@ public class Key : MonoBehaviour
 
             if (!wasScored)
             {
-                scoringSystemScript.mulitiplierScore = 0;
+                scoringSystemScript.multiplierScore = 0;
             }
         }
     }
@@ -77,7 +77,7 @@ public class Key : MonoBehaviour
     {
         if (!wasScored)
         {
-            scoringSystemScript.mulitiplierScore = 0;
+            scoringSystemScript.ResetMultiplier();
         }
     }
 }

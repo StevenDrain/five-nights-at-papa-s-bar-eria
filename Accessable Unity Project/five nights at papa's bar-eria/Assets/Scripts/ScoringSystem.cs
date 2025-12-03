@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using System;
+
+
+public class ScoringSystem : MonoBehaviour
+{
+    public float multiplierScore;
+    public float baseScore;
+    public float totalScore;
+
+    public TMP_Text text;
+
+    void Start()
+    {
+        baseScore = 10;
+        multiplierScore = 0;
+        totalScore = 0;
+    }
+
+    void Update()
+    {
+        text.text = "Score: " + totalScore;
+    }
+
+    public void KeyDestroyed()
+    {
+        multiplierScore += 0.5f;
+
+        // Add to the total score using the multiplier
+        totalScore += baseScore * multiplierScore;
+    }
+
+    public void CustomerServed()
+    {
+        baseScore += 1;
+    }
+
+    public void ResetMultiplier()
+    {
+        multiplierScore = 0;
+    }
+}
