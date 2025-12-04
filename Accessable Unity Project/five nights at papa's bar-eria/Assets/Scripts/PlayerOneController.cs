@@ -34,6 +34,7 @@ public class PlayerOneController : MonoBehaviour
     {
         PlayerMovement();
         PickupDrink();
+        dropDrink();
         ServeDrink();
     }
 
@@ -120,6 +121,24 @@ public class PlayerOneController : MonoBehaviour
                 }
                 hasDrink = true;
                 hasMartini = true;
+            }
+        }
+    }
+
+    void dropDrink() {
+        //Drops drink when space is pressed
+        if(Keyboard.current.spaceKey.wasPressedThisFrame) {
+            if(hasDrink) {
+                Debug.Log("dropped drink");
+                hasDrink = false;
+                hasBeer = false;
+                hasWine = false;
+                hasShot = false;
+                hasMartini = false;
+                foreach (Transform child in hands.transform)
+                {
+                    Destroy(child.gameObject);
+                }
             }
         }
     }
