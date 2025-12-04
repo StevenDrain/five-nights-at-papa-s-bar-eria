@@ -23,9 +23,13 @@ public class Customer : MonoBehaviour
     public bool martiniRequested = false;
 
     public GameObject player;
+    private ScoringSystem scoringSystemScript;
 
     void Start()
     {
+        var scoringSystem = GameObject.FindWithTag("Score");
+        scoringSystemScript = scoringSystem.GetComponent<ScoringSystem>();
+
         spots = new GameObject[8];
         for (int i = 0; i < 8; i++)
         {
@@ -58,6 +62,7 @@ public class Customer : MonoBehaviour
     {
         if (mySpotIndex != -1)
         {
+            scoringSystemScript.CustomerServed();
             occupiedSpots.Remove(mySpotIndex);
         }
     }

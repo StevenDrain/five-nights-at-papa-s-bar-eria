@@ -16,8 +16,8 @@ public class ScoringSystem : MonoBehaviour
 
     void Start()
     {
-        baseScore = 10;
-        multiplierScore = 0;
+        baseScore = 0;
+        multiplierScore = 1;
         totalScore = 0;
     }
 
@@ -37,6 +37,7 @@ public class ScoringSystem : MonoBehaviour
     public void CustomerServed()
     {
         baseScore += 1;
+        totalScore += baseScore * multiplierScore;
     }
 
     public void ResetMultiplier()
