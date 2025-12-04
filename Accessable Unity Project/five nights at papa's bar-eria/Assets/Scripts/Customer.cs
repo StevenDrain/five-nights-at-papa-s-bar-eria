@@ -64,15 +64,46 @@ public class Customer : MonoBehaviour
 
     void ChooseSpot()
     {
+        // Find an available spot
+        List<int> availableSpots = new List<int>();
         for (int i = 0; i < spots.Length; i++)
         {
             if (!occupiedSpots.Contains(i))
             {
-                occupiedSpots.Add(i);
-                mySpotIndex = i;
-                targetSpot = spots[i].transform;
-                break;
+            availableSpots.Add(i);
             }
+        }
+
+        if (availableSpots.Count > 0)
+        {
+            // Randomly pick from available spots
+            int randomIndex = Random.Range(0, availableSpots.Count);
+            mySpotIndex = availableSpots[randomIndex];
+            occupiedSpots.Add(mySpotIndex);
+            targetSpot = spots[mySpotIndex].transform;
+        }
+        else
+        {
+            // All spots occupied, start coroutine to wait
+            StartCoroutine(WaitForAvailableSpot());
+        }
+        }
+
+        IEnumerator WaitForAvailableSpot()
+        {
+        while (true)
+        {
+            for (int i = 0; i < spots.Length; i++)
+            {
+            if (!occupiedSpots.Contains(i))
+            {
+                mySpotIndex = i;
+                occupiedSpots.Add(mySpotIndex);
+                targetSpot = spots[mySpotIndex].transform;
+                yield break;
+            }
+            }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
