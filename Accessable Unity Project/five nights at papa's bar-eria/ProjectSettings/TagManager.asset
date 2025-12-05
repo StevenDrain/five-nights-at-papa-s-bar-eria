@@ -10,6 +10,8 @@ TagManager:
   - Scored
   - Score
   - Spawners
+  - Customer
+  - sceneManager
   layers:
   - Default
   - TransparentFX

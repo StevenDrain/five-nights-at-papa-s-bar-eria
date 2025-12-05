@@ -7,6 +7,7 @@ using UnityEngine;
 public class SceneManagerScript : MonoBehaviour
 {
     public string MainSceneName;
+
     void Start()
     {
         

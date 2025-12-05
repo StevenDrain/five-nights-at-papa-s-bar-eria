@@ -13,9 +13,13 @@ public class ScoringSystem : MonoBehaviour
     public float totalScore;
 
     public TMP_Text text;
+    private SceneManagerScript sceneManagerScript;
 
     void Start()
     {
+        var sceneManagerObject = GameObject.FindWithTag("sceneManager");
+        sceneManagerScript = sceneManagerObject.GetComponent<SceneManagerScript>();
+
         baseScore = 0;
         multiplierScore = 1;
         totalScore = 0;
@@ -24,6 +28,11 @@ public class ScoringSystem : MonoBehaviour
     void Update()
     {
         text.text = "Score: " + totalScore;
+        if(totalScore >= 500)
+        {
+            WinGame();
+        }
+        
     }
 
     public void KeyDestroyed()
@@ -43,5 +52,8 @@ public class ScoringSystem : MonoBehaviour
     public void ResetMultiplier()
     {
         multiplierScore = 0;
+    }
+    public void WinGame(){
+        sceneManagerScript.StartGame();
     }
 }
